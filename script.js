@@ -11,10 +11,20 @@ buttons.addEventListener("click", (e) => {
         display.textContent += targetID
     }
     if (e.target.className === "operation") {
-
+        firstValue = Number(display.textContent);
+        display.textContent = "";
+        operator = targetID;
+        console.log(firstValue);
     }
     if (targetID === "clear") {
-        display.textContent = ""
+        display.textContent = "";
+        firstValue = "";
+        secondValue = "";
+        operator = "";
+    }
+    if (targetID === "equal") {
+        secondValue = Number(display.textContent);
+        display.textContent = operate(operator, firstValue, secondValue);
     }
 })
 
@@ -37,16 +47,12 @@ function divide(a, b) {
 function operate(operator, numA, numB) {
     switch (operator) {
         case "add":
-            add(numA, numB);
-            break;
+            return add(numA, numB);
         case "subtract":
-            subtract(numA, numB);
-            break;
+            return subtract(numA, numB);
         case "multiply":
-            multiply(numA, numB);
-            break;
+            return multiply(numA, numB);
         case "divide":
-            divide(numA, numB);
-            break;
+            return divide(numA, numB);
     }
 }
