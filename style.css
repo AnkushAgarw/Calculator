@@ -32,4 +32,6 @@ button {
     width: 90px;
     height: 100%;
     margin: auto 12px;
+    border-radius: 20px;
+    font-size: large;
 }

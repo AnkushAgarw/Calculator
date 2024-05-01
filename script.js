@@ -3,6 +3,7 @@ let secondValue
 let operator
 
 let operatorButtonPressed = false;
+let decimalButtonPressed = false;
 
 let display = document.querySelector(".display");
 let buttons = document.querySelector(".buttons")
@@ -17,6 +18,9 @@ buttons.addEventListener("click", (e) => {
         if (display.textContent.length < 15) {
             display.textContent += targetID
         }
+    }
+    if (targetID === "." && !decimalButtonPressed) {
+        display.textContent += targetID
     }
     if (e.target.className === "operation") {
         if (firstValue) {
