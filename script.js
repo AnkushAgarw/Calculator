@@ -2,17 +2,29 @@ let firstValue
 let secondValue
 let operator
 
+let operatorButtonPressed = false;
+
 let display = document.querySelector(".display");
 let buttons = document.querySelector(".buttons")
 
 buttons.addEventListener("click", (e) => {
     targetID = e.target.id;
     if (e.target.className === "number") {
-        display.textContent += targetID
+        if (operatorButtonPressed) {
+            display.textContent = ""
+            operatorButtonPressed = false;
+        }
+        if (display.textContent.length < 15) {
+            display.textContent += targetID
+        }
     }
     if (e.target.className === "operation") {
+        if (firstValue) {
+            secondValue = Number(display.textContent);
+            display.textContent = operate(operator, firstValue, secondValue);
+        }
         firstValue = Number(display.textContent);
-        display.textContent = "";
+        operatorButtonPressed = true;
         operator = targetID;
         console.log(firstValue);
     }
@@ -22,9 +34,11 @@ buttons.addEventListener("click", (e) => {
         secondValue = "";
         operator = "";
     }
-    if (targetID === "equal") {
+    if (targetID === "equal" && firstValue) {
         secondValue = Number(display.textContent);
         display.textContent = operate(operator, firstValue, secondValue);
+        firstValue = "";
+        operator = "";
     }
 })
 
@@ -45,14 +59,18 @@ function divide(a, b) {
 }
 
 function operate(operator, numA, numB) {
+    if (operator === "divide" && numB === 0) {
+        return "BOOM!"
+    }
+
     switch (operator) {
         case "add":
-            return add(numA, numB);
+            return Number(add(numA, numB).toFixed(7));
         case "subtract":
-            return subtract(numA, numB);
+            return Number(subtract(numA, numB).toFixed(7));
         case "multiply":
-            return multiply(numA, numB);
+            return Number(multiply(numA, numB).toFixed(7));
         case "divide":
-            return divide(numA, numB);
+            return Number(divide(numA, numB).toFixed(7));
     }
 }
