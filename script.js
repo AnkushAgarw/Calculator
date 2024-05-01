@@ -33,10 +33,7 @@ buttons.addEventListener("click", (e) => {
         console.log(firstValue);
     }
     if (targetID === "clear") {
-        display.textContent = "";
-        firstValue = "";
-        secondValue = "";
-        operator = "";
+        clear()
     }
     if (targetID === "equal" && firstValue) {
         secondValue = Number(display.textContent);
@@ -77,4 +74,11 @@ function operate(operator, numA, numB) {
         case "divide":
             return Number(divide(numA, numB).toFixed(7));
     }
+}
+
+function clear() {
+    display.textContent = "";
+    firstValue = "";
+    secondValue = "";
+    operator = "";
 }
