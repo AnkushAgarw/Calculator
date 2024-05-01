@@ -15,7 +15,7 @@ buttons.addEventListener("click", (e) => {
             display.textContent = ""
             operatorButtonPressed = false;
         }
-        if (display.textContent.length < 15) {
+        if (display.textContent.length < 12) {
             display.textContent += targetID
         }
     }
@@ -30,7 +30,6 @@ buttons.addEventListener("click", (e) => {
         firstValue = Number(display.textContent);
         operatorButtonPressed = true;
         operator = targetID;
-        console.log(firstValue);
     }
     if (targetID === "clear") {
         clear()
